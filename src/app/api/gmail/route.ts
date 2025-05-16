@@ -4,7 +4,7 @@ import { NextResponse } from 'next/server'
 export async function GET() {
   const session = await auth()
 
-  console.log('Session in API route:', session) // Debug log
+  console.log('Session in API route: api/gmail', session) // Debug log
 
   if (!session?.accessToken) {
     return NextResponse.json(
@@ -24,7 +24,20 @@ export async function GET() {
         next: { revalidate: 3600 }, // Cache for 1 hour
       },
     )
+    // const query = 'subject:(order OR receipt OR confirmation) after:2023/01/01'
+    // const response = await fetch(
+    //   `https://gmail.googleapis.com/gmail/v1/users/me/messages?q=${encodeURIComponent(
+    //     query,
+    //   )}&maxResults=50`,
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${session.accessToken}`,
+    //       'Content-Type': 'application/json',
+    //     },
+    //   },
+    // )
 
+    console.log('response gmail', response)
     if (!response.ok) {
       const errorData = await response.json()
       console.error('Gmail API error:', errorData)
