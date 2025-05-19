@@ -2,6 +2,7 @@
 import OrderTracker from '@/components/OrderTracker/OrderTracker'
 import { auth } from '@/../auth'
 import { redirect } from 'next/navigation'
+import EmailList from '@/components/EmailList/EmailList'
 
 export default async function DashboardPage() {
   const session = await auth()
@@ -9,7 +10,7 @@ export default async function DashboardPage() {
 
   return (
     <main>
-      <OrderTracker />
+      <EmailList />
     </main>
   )
 }
