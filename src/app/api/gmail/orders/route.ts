@@ -58,7 +58,7 @@ export async function GET() {
     const response = await fetch(
       `https://gmail.googleapis.com/gmail/v1/users/me/messages?q=${encodeURIComponent(
         query,
-      )}&maxResults=20`,
+      )}&maxResults=50`,
       {
         headers: {
           Authorization: `Bearer ${session.accessToken}`,
